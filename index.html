@@ -1,1 +1,339 @@
-<h1>Hello Saudi!</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        
+<!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+
+    <style>
+        canvas{
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+        .chart-container {
+            width: 500px;
+            margin-left: 40px;
+            margin-right: 40px;
+            margin-bottom: 40px;
+        }
+	</style>
+
+    </head>
+    <body class="bg-light">
+        <nav class="navbar navbar-dark bg-dark" >
+        <a class="navbar-brand" href="#"> # ELSI</a>
+        </nav>
+        <div class="container-fluid">
+            <div class="row pr-3 pt-3">
+                <div class="col-3">
+                    <div class="list-group list-group-flush text-truncate shadow" id="list-tab" role="tablist" style="font-weight:100">
+                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Report Sample 1</a>
+                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Report Sample 2</a>
+                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Report Sample 3</a>
+                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Chart Samples</a>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                            <div class="row">
+                                <div class="col-12 bg-white shadow pt-3">
+                                    <span style="font-weight:100;font-size:1.5rem;">REPORT SAMPLE 1</span>
+                                    <table class="table table-sm table-striped">
+                                    <thead>
+                                    <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                </div>
+                                <div class="col-6">
+                                </div>
+                            </div>
+                        </div>
+                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                        .2.
+                    </div>
+                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">.3.</div>
+                        <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="bg-white shadow col">
+                                    <div class="row">
+                                        <canvas id="chart4"></canvas>
+                                    </div>
+                                    <div class="row m-2 p-3">
+                                        Chart Type:
+                                        <select class="m-2" id="type">
+                                            <option value="line">Line</option>
+                                            <option value="bar">Bar</option>
+                                        </select>
+                                        <button class="btn btn-xs btn-primary" type="button" id="update">update</button>
+                                    </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col mt-2">
+                                    <div class="bg-white shadow">
+                                        <div class="pointStyleContainer"></div>
+                                    </div>
+                                </div>
+                                <div class="col mt-2">
+                                    <div class="bg-white shadow">
+                                        <canvas id="eg_chart_1"></canvas>
+                                    </div>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col mt-2">
+                                    <div class="bg-white shadow">
+                                          <canvas id="eg_chart_2"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col mt-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fixed-bottom bg-transparent text-secondary clearfix m-2"><small style="font-weight: 100;" class="float-right">&copy; DUALROOTS SOFTWARE PVT. LTD.</small></div>
+ 
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <script src="Chart/Chart.js"></script>
+
+        <!-- Error: Chart.js - Moment.js could not be found! You must include it before Chart.js to use the time scale.  -->
+        <script src="js/utils.js"></script>
+        
+               <!-- SCRIPTS -->
+        <script>
+		function createConfig(pointStyle) {
+			return {
+				type: 'line',
+				data: {
+					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+					datasets: [{
+						label: 'My First dataset',
+						backgroundColor: window.chartColors.red,
+						borderColor: window.chartColors.red,
+						data: [10, 23, 5, 99, 67, 43, 0],
+						fill: false,
+						pointRadius: 10,
+						pointHoverRadius: 15,
+						showLine: false // no line shown
+					}]
+				},
+				options: {
+					responsive: true,
+					title: {
+						display: true,
+						text: 'Point Style: ' + pointStyle
+					},
+					legend: {
+						display: false
+					},
+					elements: {
+						point: {
+							pointStyle: pointStyle
+						}
+					}
+				}
+			};
+		}
+            
+        window.onload = function() {
+
+            var randomScalingFactor = function() {
+			return Math.round(Math.random() * 100);
+		      };
+
+            var eg_config_1 = {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                label: "My First dataset",
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45],
+                }]
+                },
+
+                // Configuration options go here
+                options: {}
+            }
+
+                //MY PIE EG2
+            var eg_config_2 = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                        ],
+                        label: 'Dataset 1'
+                    }],
+                    labels: [
+                        'Red',
+                        'Orange',
+                        'Yellow',
+                        'Green',
+                        'Blue'
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+
+            var ctx1 = document.getElementById('eg_chart_1').getContext('2d');
+            var chart1 = new Chart(ctx1, eg_config_1);
+
+            var ctx2 = document.getElementById('eg_chart_2').getContext('2d');
+			window.myPie = new Chart(ctx2, eg_config_2);
+
+            //END MYPIE 
+            
+            // POINT STYLES
+            var pointStyleContainer = document.querySelector('.pointStyleContainer');
+			[
+				'triangle'
+			].forEach(function(pointStyle) {
+				var div = document.createElement('div');
+				div.classList.add('col');
+
+				var canvas = document.createElement('canvas');
+				div.appendChild(canvas);
+				pointStyleContainer.appendChild(div);
+
+				var ctx = canvas.getContext('2d');
+				var config = createConfig(pointStyle);
+				new Chart(ctx, config);
+			});
+
+            //Financial Chart eg_chart_4
+            
+ 		function randomNumber(min, max) {
+			return Math.random() * (max - min) + min;
+		}
+
+		function randomBar(date, lastClose) {
+			var open = randomNumber(lastClose * 0.95, lastClose * 1.05);
+			var close = randomNumber(open * 0.95, open * 1.05);
+			return {
+				t: date.valueOf(),
+				y: close
+			};
+		}
+
+		var dateFormat = 'MMMM DD YYYY';
+		var date = moment('April 01 2017', dateFormat);
+		var data = [randomBar(date, 30)];
+		var labels = [date];
+		while (data.length < 60) {
+			date = date.clone().add(1, 'd');
+			if (date.isoWeekday() <= 5) {
+				data.push(randomBar(date, data[data.length - 1].y));
+				labels.push(date);
+			}
+		}
+
+		var ctx4 = document.getElementById('chart4').getContext('2d');
+		ctx4.canvas.width = 1000;
+		ctx4.canvas.height = 300;
+		var cfg4 = {
+			type: 'bar',
+			data: {
+				labels: labels,
+				datasets: [{
+					label: 'Financial Chart',
+					data: data,
+					type: 'line',
+					pointRadius: 0,
+					fill: false,
+					lineTension: 0,
+					borderWidth: 2
+				}]
+			},
+			options: {
+				scales: {
+					xAxes: [{
+						type: 'time',
+						distribution: 'series',
+						ticks: {
+							source: 'labels'
+						}
+					}],
+					yAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: 'Closing price ($)'
+						}
+					}]
+				}
+			}
+		};
+		var chart4 = new Chart(ctx4, cfg4);
+
+		document.getElementById('update').addEventListener('click', function() {
+			var type = document.getElementById('type').value;
+			chart4.config.data.datasets[0].type = type;
+			chart4.update();
+		});
+//EDN FINANCIAL
+
+        } // WINDOW.ONLOAD
+        
+            
+        </script>
+
+</body>
+</html>
