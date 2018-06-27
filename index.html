@@ -32,10 +32,10 @@
             <div class="row pr-3 pt-3">
                 <div class="col-3">
                     <div class="list-group list-group-flush text-truncate shadow" id="list-tab" role="tablist" style="font-weight:100">
-                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">STATIC EXAMPLE</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">DYNAMIC EXAMPLE</a>
+                    <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Static Example</a>
+                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Dynamic Example</a>
 <!--                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">STYLES</a>-->
-                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">CHART SAMPLES</a>
+                    <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Chart Samples</a>
                     </div>
                 </div>
                 <div class="col-9">
@@ -44,16 +44,22 @@
                             <div class="row">
                                 <div class="col-12 bg-white shadow pt-3">
                                     <div class="row"><span class="p-2 text-primary" style="font-size:1.25rem;">TABLE A</span></div>
-                                    <div class="row p-2" id="table-a-container" style="max-height:500px; overflow-y:auto">
+                                    <div class="row p-2" id="table-a-container" style="max-height:400px; overflow-y:auto">
 <!--                                        <table id="table-a"></table>-->
                                     </div>
                                     <div class="row">&nbsp;</div>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-6">
+                                <div class="col">
+                                    <div class="bg-white shadow">
+                                        <canvas id="graph_1"></canvas>
+                                    </div>
                                 </div>
-                                <div class="col-6">
+                                <div class="col">
+                                    <div class="bg-white shadow">
+                                        <canvas id="graph_2"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -121,17 +127,522 @@
 
         <!-- Error: Chart.js - Moment.js could not be found! You must include it before Chart.js to use the time scale.  -->
         <script src="js/utils.js"></script>
+        <script src="https://underscorejs.org/underscore-min.js"></script>
         
                <!-- SCRIPTS -->
         <script>
-            var big_data = {};
+                        /* 
+            
+            JSON DATA BEGIN
+            
+            
+            */
+
+            var big_data = [
+	{
+		"MOC_Number": "MOC-001",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "CL",
+		"Is_Emergency": "0",
+		"Creation_Year": "2011",
+		"Creation_Month": "1",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Gate1"
+	},
+	{
+		"MOC_Number": "MOC-002",
+		"MOC_Type": "PC",
+		"Type_of_Change": "PCS",
+		"Is_Emergency": "0",
+		"Creation_Year": "2012",
+		"Creation_Month": "1",
+		"MOC_Status": "Closed",
+		"MOC_Current_Step": "END WF"
+	},
+	{
+		"MOC_Number": "MOC-003",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "Normal",
+		"Is_Emergency": "0",
+		"Creation_Year": "2010",
+		"Creation_Month": "1",
+		"MOC_Status": "Cancelled",
+		"MOC_Current_Step": "END WF"
+	},
+	{
+		"MOC_Number": "MOC-004",
+		"MOC_Type": "PC",
+		"Type_of_Change": "Normal and PCS",
+		"Is_Emergency": "0",
+		"Creation_Year": "2010",
+		"Creation_Month": "1",
+		"MOC_Status": "On Hold",
+		"MOC_Current_Step": "MOC Gate1"
+	},
+	{
+		"MOC_Number": "MOC-005",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "CL",
+		"Is_Emergency": "1",
+		"Creation_Year": "2010",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Execution"
+	},
+	{
+		"MOC_Number": "MOC-006",
+		"MOC_Type": "PC",
+		"Type_of_Change": "PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2010",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Gate2"
+	},
+	{
+		"MOC_Number": "MOC-007",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "Normal",
+		"Is_Emergency": "1",
+		"Creation_Year": "2010",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Risk Assessment"
+	},
+	{
+		"MOC_Number": "MOC-008",
+		"MOC_Type": "PC",
+		"Type_of_Change": "Normal and PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2010",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Registration"
+	},
+	{
+		"MOC_Number": "MOC-009",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "CL",
+		"Is_Emergency": "1",
+		"Creation_Year": "2010",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Execution"
+	},
+	{
+		"MOC_Number": "MOC-010",
+		"MOC_Type": "PC",
+		"Type_of_Change": "PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2010",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Gate2"
+	},
+	{
+		"MOC_Number": "MOC-011",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "Normal",
+		"Is_Emergency": "1",
+		"Creation_Year": "2010",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Risk Assessment"
+	},
+	{
+		"MOC_Number": "MOC-012",
+		"MOC_Type": "PC",
+		"Type_of_Change": "Normal and PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2010",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Registration"
+	},
+	{
+		"MOC_Number": "MOC-013",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "CL",
+		"Is_Emergency": "0",
+		"Creation_Year": "2011",
+		"Creation_Month": "1",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Gate1"
+	},
+	{
+		"MOC_Number": "MOC-014",
+		"MOC_Type": "PC",
+		"Type_of_Change": "PCS",
+		"Is_Emergency": "0",
+		"Creation_Year": "2011",
+		"Creation_Month": "1",
+		"MOC_Status": "Closed",
+		"MOC_Current_Step": "END WF"
+	},
+	{
+		"MOC_Number": "MOC-015",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "Normal",
+		"Is_Emergency": "0",
+		"Creation_Year": "2011",
+		"Creation_Month": "1",
+		"MOC_Status": "Cancelled",
+		"MOC_Current_Step": "END WF"
+	},
+	{
+		"MOC_Number": "MOC-016",
+		"MOC_Type": "PC",
+		"Type_of_Change": "Normal and PCS",
+		"Is_Emergency": "0",
+		"Creation_Year": "2011",
+		"Creation_Month": "1",
+		"MOC_Status": "On Hold",
+		"MOC_Current_Step": "MOC Gate1"
+	},
+	{
+		"MOC_Number": "MOC-017",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "CL",
+		"Is_Emergency": "1",
+		"Creation_Year": "2011",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Execution"
+	},
+	{
+		"MOC_Number": "MOC-018",
+		"MOC_Type": "PC",
+		"Type_of_Change": "PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2011",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Gate2"
+	},
+	{
+		"MOC_Number": "MOC-019",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "Normal",
+		"Is_Emergency": "1",
+		"Creation_Year": "2011",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Risk Assessment"
+	},
+	{
+		"MOC_Number": "MOC-020",
+		"MOC_Type": "PC",
+		"Type_of_Change": "Normal and PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2011",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Registration"
+	},
+	{
+		"MOC_Number": "MOC-021",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "CL",
+		"Is_Emergency": "1",
+		"Creation_Year": "2011",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Execution"
+	},
+	{
+		"MOC_Number": "MOC-022",
+		"MOC_Type": "PC",
+		"Type_of_Change": "PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2011",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Gate2"
+	},
+	{
+		"MOC_Number": "MOC-023",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "Normal",
+		"Is_Emergency": "1",
+		"Creation_Year": "2011",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Risk Assessment"
+	},
+	{
+		"MOC_Number": "MOC-024",
+		"MOC_Type": "PC",
+		"Type_of_Change": "Normal and PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2011",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Registration"
+	},
+	{
+		"MOC_Number": "MOC-025",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "CL",
+		"Is_Emergency": "0",
+		"Creation_Year": "2012",
+		"Creation_Month": "1",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Gate1"
+	},
+	{
+		"MOC_Number": "MOC-026",
+		"MOC_Type": "PC",
+		"Type_of_Change": "PCS",
+		"Is_Emergency": "0",
+		"Creation_Year": "2012",
+		"Creation_Month": "1",
+		"MOC_Status": "Closed",
+		"MOC_Current_Step": "END WF"
+	},
+	{
+		"MOC_Number": "MOC-027",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "Normal",
+		"Is_Emergency": "0",
+		"Creation_Year": "2012",
+		"Creation_Month": "1",
+		"MOC_Status": "Cancelled",
+		"MOC_Current_Step": "END WF"
+	},
+	{
+		"MOC_Number": "MOC-028",
+		"MOC_Type": "PC",
+		"Type_of_Change": "Normal and PCS",
+		"Is_Emergency": "0",
+		"Creation_Year": "2012",
+		"Creation_Month": "1",
+		"MOC_Status": "On Hold",
+		"MOC_Current_Step": "MOC Gate1"
+	},
+	{
+		"MOC_Number": "MOC-029",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "CL",
+		"Is_Emergency": "1",
+		"Creation_Year": "2012",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Execution"
+	},
+	{
+		"MOC_Number": "MOC-030",
+		"MOC_Type": "PC",
+		"Type_of_Change": "PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2012",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Gate2"
+	},
+	{
+		"MOC_Number": "MOC-031",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "Normal",
+		"Is_Emergency": "1",
+		"Creation_Year": "2012",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Risk Assessment"
+	},
+	{
+		"MOC_Number": "MOC-032",
+		"MOC_Type": "PC",
+		"Type_of_Change": "Normal and PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2012",
+		"Creation_Month": "2",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Registration"
+	},
+	{
+		"MOC_Number": "MOC-033",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "CL",
+		"Is_Emergency": "1",
+		"Creation_Year": "2012",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Execution"
+	},
+	{
+		"MOC_Number": "MOC-034",
+		"MOC_Type": "PC",
+		"Type_of_Change": "PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2012",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Gate2"
+	},
+	{
+		"MOC_Number": "MOC-035",
+		"MOC_Type": "TPC",
+		"Type_of_Change": "Normal",
+		"Is_Emergency": "1",
+		"Creation_Year": "2012",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Risk Assessment"
+	},
+	{
+		"MOC_Number": "MOC-036",
+		"MOC_Type": "PC",
+		"Type_of_Change": "Normal and PCS",
+		"Is_Emergency": "1",
+		"Creation_Year": "2012",
+		"Creation_Month": "3",
+		"MOC_Status": "Open",
+		"MOC_Current_Step": "MOC Registration"
+	}
+];
+            
+            /* 
+            
+            JSON DATA END
+            
+            
+            */
             var prime_keys = ['user_id','username','room_id','conference_id','schedule_id','Tables_in_meetingkaro'];
+
+            var gph1_config = {
+                type: 'doughnut',
+                data: getGraph1Data(),
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'MOC Status'
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            };
+
+            var gph2_config = {
+			type: 'line',
+			data: getGraph2Data(),
+			options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'MOC by Year'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Year'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Value'
+                            }
+                        }]
+                    }
+                }
+            };
+
             function setTableA(){
                 generateTable('table-a-container',big_data);
             }
             function setTableB(){
                 generateTable('table-b',big_data);                
             }
+            function update(){
+                updateGraph1();
+                updateGraph2();
+                updateGraph3();
+                var groupedData = _.groupBy(big_data, function(d){return d.MOC_Type});
+            }
+            function getGraph1Data(){
+                var data = {datasets:[{data:[],backgroundColor:[],label:'Set 1'}],labels:[]};
+                var groupedData = _.groupBy(big_data, function(d){return d.MOC_Status});
+                
+                $.each(groupedData,function(key,arr){
+                    var colorNames = Object.keys(window.chartColors);
+                    var colorName = colorNames[data.datasets[0].data.length % colorNames.length];
+                    var newColor = window.chartColors[colorName];
+
+                    data.labels.push(key);
+                    data.datasets[0].data.push(arr.length);
+                    data.datasets[0].backgroundColor.push(newColor);
+
+                    //data.datasets[0].backgroundColor.push(arr.length);
+                });
+                return data;
+            }
+            function getGraph2Data(){
+                var data = {datasets:[],labels:[]};
+                var groupedData = _.groupBy(big_data, function(d){return d.Creation_Year});
+                var subGroupedData_all = _.groupBy(big_data, function(d){return d.MOC_Type});
+                //var datasets = [];
+                console.log(groupedData);
+                
+                $.each(groupedData,function(key,arr){
+                    data.labels.push(key);
+                    
+                    
+                    //data.datasets[0].backgroundColor.push(arr.length);
+                });
+                $.each(subGroupedData_all,function(skey,sarr){
+                    var colorNames = Object.keys(window.chartColors);
+                    var colorName = colorNames[data.datasets.length % colorNames.length];
+                    var newColor = window.chartColors[colorName];
+                    
+                    var dataset = {label:skey,data:[],backgroundColor: newColor,
+					borderColor: newColor,fill:false};
+                        console.log(skey);
+                    
+                    $.each(groupedData,function(grkey,grarr){
+                        var subGroupedData_inside = _.groupBy(grarr, function(d){return d.MOC_Type});
+                        //console.log(subGroupedData_inside[skey].length);
+                        dataset.data.push(subGroupedData_inside[skey].length);
+                        //console.log(skey);
+                        //dataset.data.push(inkey.skey.length);
+                    });
+                    console.log(dataset);
+                    data.datasets.push(dataset);
+
+                    //var subgroup_data_count = _.groupBy(arr, function(d){return d.MOC_Type}).length;
+                    //console.log(_.groupBy(arr, function(d){return d.MOC_Type}));
+//                        dataset.data.push[];
+                    //data.datasets[0].data.push(arr.length);
+                });
+                console.log(JSON.stringify(data));
+                return data;
+            }
+            function updateGraph1(){
+
+            }
+            function updateGraph2(){
+                
+            }
+            function updateGraph3(){
+                
+            }
+
             function generateTable(table_container_id, jsonData){
                 
                 var table = $("<table />");
@@ -157,11 +668,16 @@
                 
                 $("#"+table_container_id).html(table);
                 $("#"+table_container_id+" table").addClass("table table-sm table-bordered table-responsive");
-                        console.log(table);
+                        //console.log(table);
                 //return table;
 
                 
             }
+            
+            var randomScalingFactor = function() {
+                return Math.round(Math.random() * 100);
+            };
+
             function createConfig(pointStyle) {
                 return {
                     type: 'line',
@@ -197,10 +713,11 @@
             }
             
             window.onload = function() {
+                var gph1 = document.getElementById('graph_1').getContext('2d');
+                window.myGraph1 = new Chart(gph1, gph1_config);
 
-                var randomScalingFactor = function() {
-                return Math.round(Math.random() * 100);
-                  };
+                var gph2 = document.getElementById('graph_2').getContext('2d');
+                window.myGraph2 = new Chart(gph2, gph2_config);
 
                 var eg_config_1 = {
                     // The type of chart we want to create
@@ -353,11 +870,10 @@
 
                 //REPORTING
                 
-                $.getJSON( "sampleMOCData.json", function(data){
-                    big_data = data;
                     setTableA();
                     setTableB();
-                });
+                    update();
+                
             } // WINDOW.ONLOAD
         
             
