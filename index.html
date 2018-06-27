@@ -134,7 +134,10 @@
         </div>
         <div class="fixed-bottom bg-transparent text-black-50 clearfix m-2"><small style="font-weight: 100;" class="float-right">&copy; DUALROOTS SOFTWARE PVT. LTD.</small></div>
  
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!--        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         
@@ -146,196 +149,202 @@
         
                <!-- SCRIPTS -->
         <script>
-		function createConfig(pointStyle) {
-			return {
-				type: 'line',
-				data: {
-					labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-					datasets: [{
-						label: 'My First dataset',
-						backgroundColor: window.chartColors.red,
-						borderColor: window.chartColors.red,
-						data: [10, 23, 5, 99, 67, 43, 0],
-						fill: false,
-						pointRadius: 10,
-						pointHoverRadius: 15,
-						showLine: false // no line shown
-					}]
-				},
-				options: {
-					responsive: true,
-					title: {
-						display: true,
-						text: 'Point Style: ' + pointStyle
-					},
-					legend: {
-						display: false
-					},
-					elements: {
-						point: {
-							pointStyle: pointStyle
-						}
-					}
-				}
-			};
-		}
+            var big_data = {};
+            function createConfig(pointStyle) {
+                return {
+                    type: 'line',
+                    data: {
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                        datasets: [{
+                            label: 'My First dataset',
+                            backgroundColor: window.chartColors.red,
+                            borderColor: window.chartColors.red,
+                            data: [10, 23, 5, 99, 67, 43, 0],
+                            fill: false,
+                            pointRadius: 10,
+                            pointHoverRadius: 15,
+                            showLine: false // no line shown
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            text: 'Point Style: ' + pointStyle
+                        },
+                        legend: {
+                            display: false
+                        },
+                        elements: {
+                            point: {
+                                pointStyle: pointStyle
+                            }
+                        }
+                    }
+                };
+            }
             
-        window.onload = function() {
+            window.onload = function() {
 
-            var randomScalingFactor = function() {
-			return Math.round(Math.random() * 100);
-		      };
+                var randomScalingFactor = function() {
+                return Math.round(Math.random() * 100);
+                  };
 
-            var eg_config_1 = {
-                // The type of chart we want to create
-                type: 'line',
+                var eg_config_1 = {
+                    // The type of chart we want to create
+                    type: 'line',
 
-                // The data for our dataset
-                data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [{
-                label: "My First dataset",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-                }]
-                },
+                    // The data for our dataset
+                    data: {
+                    labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    datasets: [{
+                    label: "My First dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45],
+                    }]
+                    },
 
-                // Configuration options go here
-                options: {}
+                    // Configuration options go here
+                    options: {}
+                }
+
+                    //MY PIE EG2
+                var eg_config_2 = {
+                    type: 'pie',
+                    data: {
+                        datasets: [{
+                            data: [
+                                randomScalingFactor(),
+                                randomScalingFactor(),
+                                randomScalingFactor(),
+                                randomScalingFactor(),
+                                randomScalingFactor(),
+                            ],
+                            backgroundColor: [
+                                window.chartColors.red,
+                                window.chartColors.orange,
+                                window.chartColors.yellow,
+                                window.chartColors.green,
+                                window.chartColors.blue,
+                            ],
+                            label: 'Dataset 1'
+                        }],
+                        labels: [
+                            'Red',
+                            'Orange',
+                            'Yellow',
+                            'Green',
+                            'Blue'
+                        ]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                };
+
+                var ctx1 = document.getElementById('eg_chart_1').getContext('2d');
+                var chart1 = new Chart(ctx1, eg_config_1);
+
+                var ctx2 = document.getElementById('eg_chart_2').getContext('2d');
+                window.myPie = new Chart(ctx2, eg_config_2);
+
+                //END MYPIE 
+
+                // POINT STYLES
+                var pointStyleContainer = document.querySelector('.pointStyleContainer');
+                [
+                    'triangle'
+                ].forEach(function(pointStyle) {
+                    var div = document.createElement('div');
+                    div.classList.add('col');
+
+                    var canvas = document.createElement('canvas');
+                    div.appendChild(canvas);
+                    pointStyleContainer.appendChild(div);
+
+                    var ctx = canvas.getContext('2d');
+                    var config = createConfig(pointStyle);
+                    new Chart(ctx, config);
+                });
+
+                //Financial Chart eg_chart_4
+
+            function randomNumber(min, max) {
+                return Math.random() * (max - min) + min;
             }
 
-                //MY PIE EG2
-            var eg_config_2 = {
-                type: 'pie',
+            function randomBar(date, lastClose) {
+                var open = randomNumber(lastClose * 0.95, lastClose * 1.05);
+                var close = randomNumber(open * 0.95, open * 1.05);
+                return {
+                    t: date.valueOf(),
+                    y: close
+                };
+            }
+
+            var dateFormat = 'MMMM DD YYYY';
+            var date = moment('April 01 2017', dateFormat);
+            var data = [randomBar(date, 30)];
+            var labels = [date];
+            while (data.length < 60) {
+                date = date.clone().add(1, 'd');
+                if (date.isoWeekday() <= 5) {
+                    data.push(randomBar(date, data[data.length - 1].y));
+                    labels.push(date);
+                }
+            }
+
+            var ctx4 = document.getElementById('chart4').getContext('2d');
+            ctx4.canvas.width = 1000;
+            ctx4.canvas.height = 300;
+            var cfg4 = {
+                type: 'bar',
                 data: {
+                    labels: labels,
                     datasets: [{
-                        data: [
-                            randomScalingFactor(),
-                            randomScalingFactor(),
-                            randomScalingFactor(),
-                            randomScalingFactor(),
-                            randomScalingFactor(),
-                        ],
-                        backgroundColor: [
-                            window.chartColors.red,
-                            window.chartColors.orange,
-                            window.chartColors.yellow,
-                            window.chartColors.green,
-                            window.chartColors.blue,
-                        ],
-                        label: 'Dataset 1'
-                    }],
-                    labels: [
-                        'Red',
-                        'Orange',
-                        'Yellow',
-                        'Green',
-                        'Blue'
-                    ]
+                        label: 'Financial Chart',
+                        data: data,
+                        type: 'line',
+                        pointRadius: 0,
+                        fill: false,
+                        lineTension: 0,
+                        borderWidth: 2
+                    }]
                 },
                 options: {
-                    responsive: true
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            distribution: 'series',
+                            ticks: {
+                                source: 'labels'
+                            }
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Closing price ($)'
+                            }
+                        }]
+                    }
                 }
             };
+            var chart4 = new Chart(ctx4, cfg4);
 
-            var ctx1 = document.getElementById('eg_chart_1').getContext('2d');
-            var chart1 = new Chart(ctx1, eg_config_1);
+            document.getElementById('update').addEventListener('click', function() {
+                var type = document.getElementById('type').value;
+                chart4.config.data.datasets[0].type = type;
+                chart4.update();
+            });
+    //END FINANCIAL
 
-            var ctx2 = document.getElementById('eg_chart_2').getContext('2d');
-			window.myPie = new Chart(ctx2, eg_config_2);
-
-            //END MYPIE 
-            
-            // POINT STYLES
-            var pointStyleContainer = document.querySelector('.pointStyleContainer');
-			[
-				'triangle'
-			].forEach(function(pointStyle) {
-				var div = document.createElement('div');
-				div.classList.add('col');
-
-				var canvas = document.createElement('canvas');
-				div.appendChild(canvas);
-				pointStyleContainer.appendChild(div);
-
-				var ctx = canvas.getContext('2d');
-				var config = createConfig(pointStyle);
-				new Chart(ctx, config);
-			});
-
-            //Financial Chart eg_chart_4
-            
- 		function randomNumber(min, max) {
-			return Math.random() * (max - min) + min;
-		}
-
-		function randomBar(date, lastClose) {
-			var open = randomNumber(lastClose * 0.95, lastClose * 1.05);
-			var close = randomNumber(open * 0.95, open * 1.05);
-			return {
-				t: date.valueOf(),
-				y: close
-			};
-		}
-
-		var dateFormat = 'MMMM DD YYYY';
-		var date = moment('April 01 2017', dateFormat);
-		var data = [randomBar(date, 30)];
-		var labels = [date];
-		while (data.length < 60) {
-			date = date.clone().add(1, 'd');
-			if (date.isoWeekday() <= 5) {
-				data.push(randomBar(date, data[data.length - 1].y));
-				labels.push(date);
-			}
-		}
-
-		var ctx4 = document.getElementById('chart4').getContext('2d');
-		ctx4.canvas.width = 1000;
-		ctx4.canvas.height = 300;
-		var cfg4 = {
-			type: 'bar',
-			data: {
-				labels: labels,
-				datasets: [{
-					label: 'Financial Chart',
-					data: data,
-					type: 'line',
-					pointRadius: 0,
-					fill: false,
-					lineTension: 0,
-					borderWidth: 2
-				}]
-			},
-			options: {
-				scales: {
-					xAxes: [{
-						type: 'time',
-						distribution: 'series',
-						ticks: {
-							source: 'labels'
-						}
-					}],
-					yAxes: [{
-						scaleLabel: {
-							display: true,
-							labelString: 'Closing price ($)'
-						}
-					}]
-				}
-			}
-		};
-		var chart4 = new Chart(ctx4, cfg4);
-
-		document.getElementById('update').addEventListener('click', function() {
-			var type = document.getElementById('type').value;
-			chart4.config.data.datasets[0].type = type;
-			chart4.update();
-		});
-//EDN FINANCIAL
-
-        } // WINDOW.ONLOAD
+                //REPORTING
+                
+                $.getJSON( "sampleMOCData.json", function(data){
+                    alert(data);
+                });
+            } // WINDOW.ONLOAD
         
             
         </script>
