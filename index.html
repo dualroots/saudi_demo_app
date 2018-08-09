@@ -4,7 +4,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous" />
-        
+ 
 <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
 
     <style>
@@ -22,49 +22,95 @@
 	</style>
 
     </head>
-    <body class="bg-light">
+    <body class="bg-dark">
 <!--        <button type="button" onclick="alert(big_data);">Click test</button>-->
         <nav class="navbar navbar-dark bg-dark" >
             <a class="navbar-brand" href="#"><i class="text-white fas fa-chart-pie"> </i>&nbsp;ELLORA</a>
-            <i class="text-white fas fa-info-circle"></i>
+<form class="form-inline">
+    <button type="button" class="btn btn-sm btn-info mb-2" style="font-size:0.75rem" onclick="showNewChartCreateModal();"><i class="fa fa-chart-bar"></i>&nbsp; New Graph</button>
+  </form>
+            
+<!--            <i class="text-white fas fa-info-circle"></i>-->
         </nav>
         <div class="container-fluid">
             <div class="row pr-3 pt-3">
-                <div class="col-3">
+                <div class="col-12 d-none">
                     <div class="list-group list-group-flush text-truncate shadow" id="list-tab" role="tablist" style="font-weight:100">
                     <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Static Example</a>
-                    <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Dynamic Example</a>
+                    <a class="list-group-item list-group-item-action " id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Dynamic Example</a>
 <!--                    <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">STYLES</a>-->
                     <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Chart Samples</a>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-12">
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                             <div class="row">
-                                <div class="col-12 bg-white shadow pt-3">
-                                    <div class="row"><span class="p-2 text-info" style="font-size:1.25rem;">TABLE A</span></div>
+                                <div class="col-12 bg-white shadow pt-3 d-none">
+                                    <div class="row">
+                                        <div class="col-12 clearfix">
+                                            <span class="p-2 float-left text-info" style="font-size:1.25rem;">TABLE A</span>
+                                            <div class="p-2 bg-light text-secondary rounded border-light float-right">      <span style="font-size:0.8rem">Export</span> 
+                                                <div class="btn-group btn-group-sm" role="group">
+                                                    <button class="btn btn-info" style="font-size:0.7rem" type="button">CSV</button>
+                                                    <button class="btn btn-info" style="font-size:0.7rem" type="button">PDF</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row p-2" id="table-a-container" style="max-height:400px; overflow-y:auto;font-size:0.75rem;">
 <!--                                        <table id="table-a"></table>-->
                                     </div>
                                     <div class="row">&nbsp;</div>
                                 </div>
                             </div>
-                            <div class="row mt-3">
-                                <div class="col">
+                            <div class="row d-flex" id="dyn-charts-container">
+                                <div class="col pl-0 mt-3">
                                     <div class="bg-white shadow">
-                                        <canvas id="graph_1"></canvas>
+                                        <canvas id="bar_graph_1"></canvas>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col pr-0 mt-3">
                                     <div class="bg-white shadow">
                                         <canvas id="graph_2"></canvas>
                                     </div>
                                 </div>
+                                <div class="w-100"></div>
+                                <div class="col pl-0 mt-3">
+                                    <div class="bg-white shadow">
+                                        <canvas id="graph_1"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col"></div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                            .2.
+                        <div class="tab-pane fade " id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                            <div class="row">
+                                <div class="col-12 bg-white shadow pt-3">
+                                    <div class="row">
+                                        <div class="col-12 clearfix">
+                                            <span class="p-2 float-left text-info" style="font-size:1.25rem;">TABLE B</span>
+                                            <div class="p-2 bg-light text-secondary rounded border-light float-right">      <span style="font-size:0.8rem">Export</span> 
+                                                <div class="btn-group btn-group-sm" role="group">
+                                                    <button class="btn btn-success" style="font-size:0.7rem" type="button">CSV</button>
+                                                    <button class="btn btn-warning" style="font-size:0.7rem" type="button">PDF</button>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row px-2 pt-2" id="table-b-container" style="max-height:400px; overflow-y:auto;font-size:0.75rem;">
+<!--                                        <table id="table-a"></table>-->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 clearfix">
+<!--                                            <button class="btn btn-sm btn-danger float-right mb-2" style="font-size:0.75rem" onclick="showNewChartCreateModal();"><i class="fa fa-chart-bar"></i>&nbsp; New Graph</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            </div>
                         </div>
 <!--                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">.3.</div>-->
                         <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
@@ -113,6 +159,54 @@
                 </div>
             </div>
         </div>
+<div class="modal fade" id="chartCreateModal" tabindex="-1" role="dialog" aria-labelledby="chartCreateModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="chartCreateModalLabel">Chart Type - <span class="badge badge-info">BAR</span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <div class="row p-3" id="ccm-get-chart-primary">
+            <div class="form-group col">
+                <label for="chartGroupSelect">Group By</label>
+                <select class="form-control" id="chartGroupSelect" onchange="checkChartInput(this);">
+                  <option vlaue="MOC_Number">MOC Number</option>
+                  <option vlaue="MOC Type">MOC Type</option>
+                  <option vlaue="Type_of_Change">Type of Change</option>
+                  <option vlaue="Is_Emergency">Is Emergency</option>
+                  <option vlaue="Creation Year">Creation Year</option>
+                  <option vlaue="Creation_Month">Creation Month</option>
+                  <option vlaue="MOC_Status">MOC Status</option>
+                  <option vlaue="MOC_Current_Step">MOC Current Step</option>
+                </select>
+            </div>
+            <div class="form-group col">
+                <label for="chartSubGroupSelect">Sub Group By</label>
+                <select class="form-control" id="chartSubGroupSelect" onchange="checkChartInput(this);">
+                  <option selected="selected" vlaue="none">-- None --</option>
+                  <option vlaue="MOC_Number">MOC Number</option>
+                  <option vlaue="MOC Type">MOC Type</option>
+                  <option vlaue="Type_of_Change">Type of Change</option>
+                  <option vlaue="Is_Emergency">Is Emergency</option>
+                  <option vlaue="Creation Year">Creation Year</option>
+                  <option vlaue="Creation_Month">Creation Month</option>
+                  <option vlaue="MOC_Status">MOC Status</option>
+                  <option vlaue="MOC_Current_Step">MOC Current Step</option>
+                </select>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="btnGenerateChart" class="btn btn-primary" onclick="generateChart();">Generate Chart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
         <div class="fixed-bottom bg-transparent text-black-50 clearfix m-2"><small style="font-weight: 100;" class="float-right">&copy; DUALROOTS SOFTWARE PVT. LTD.</small></div>
  
 <!--        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
@@ -179,7 +273,7 @@
             "MOC_Fake_Step": "MOC Gate1",
             "Closed_Year": "2016",
             "Closed_Month": "4",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-004",
@@ -221,7 +315,7 @@
             "MOC_Fake_Step": "MOC Risk Assessment",
             "Closed_Year": "2016",
             "Closed_Month": "2",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-007",
@@ -249,7 +343,7 @@
             "MOC_Fake_Step": "MOC Execution",
             "Closed_Year": "2017",
             "Closed_Month": "7",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-009",
@@ -347,7 +441,7 @@
             "MOC_Fake_Step": "MOC Gate1",
             "Closed_Year": "2018",
             "Closed_Month": "6",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-016",
@@ -403,7 +497,7 @@
             "MOC_Fake_Step": "MOC Registration",
             "Closed_Year": "2018",
             "Closed_Month": "6",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-020",
@@ -445,7 +539,7 @@
             "MOC_Fake_Step": "MOC Risk Assessment",
             "Closed_Year": "2018",
             "Closed_Month": "3",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-023",
@@ -473,7 +567,7 @@
             "MOC_Fake_Step": "MOC Gate1",
             "Closed_Year": "2017",
             "Closed_Month": "5",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-025",
@@ -515,7 +609,7 @@
             "MOC_Fake_Step": "MOC Gate1",
             "Closed_Year": "2018",
             "Closed_Month": "9",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-028",
@@ -571,7 +665,7 @@
             "MOC_Fake_Step": "MOC Registration",
             "Closed_Year": "2016",
             "Closed_Month": "5",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-032",
@@ -613,7 +707,7 @@
             "MOC_Fake_Step": "MOC Risk Assessment",
             "Closed_Year": "2016",
             "Closed_Month": "3",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-035",
@@ -627,7 +721,7 @@
             "MOC_Fake_Step": "MOC Registration",
             "Closed_Year": "2016",
             "Closed_Month": "4",
-            "User": "Meow"
+            "User": "Satish"
         },
         {
             "MOC_Number": "MOC-036",
@@ -651,7 +745,7 @@
             
             
             */
-            var prime_keys = ['user_id','username','room_id','conference_id','schedule_id','Tables_in_meetingkaro'];
+            var prime_keys = ['user_id','username','room_id','conference_id','schedule_id','Tables_in_mtkr'];
 
             var gph1_config = {
                 type: 'doughnut',
@@ -698,6 +792,9 @@
                             }
                         }],
                         yAxes: [{
+                            ticks: {
+                                beginAtZero: false
+                            },
                             display: true,
                             scaleLabel: {
                                 display: true,
@@ -708,11 +805,60 @@
                 }
             };
 
+            var bar_gph1_config = {
+			type: 'bar',
+			data: getGraph2Data(),
+			options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'MOC by Year'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Year'
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            },
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Value'
+                            }
+                        }]
+                    },
+                        onClick: function(c,i) {
+    e = i[0];
+                            if(!e){return;}
+    console.log(e._index);
+    var x_value = this.data.labels[e._index];
+    var y_value = this.data.datasets[0].data[e._index];
+                            console.log(this.data.labels);
+    console.log(x_value);
+    console.log(y_value);
+}
+                }
+            };
+            
             function setTableA(){
                 generateTable('table-a-container',big_data);
             }
             function setTableB(){
-                generateTable('table-b',big_data);                
+                generateTable('table-b-container',big_data);                
             }
             function update(){
                 updateGraph1();
@@ -811,7 +957,7 @@
                 });
                 
                 $("#"+table_container_id).html(table);
-                $("#"+table_container_id+" table").addClass("table table-sm table-bordered table-responsive table border-secondary");
+                $("#"+table_container_id+" table").addClass("table table-sm table-bordered table-responsive border-secondary");
                         //console.log(table);
                 //return table;
 
@@ -862,6 +1008,9 @@
 
                 var gph2 = document.getElementById('graph_2').getContext('2d');
                 window.myGraph2 = new Chart(gph2, gph2_config);
+
+                var bar_gph1 = document.getElementById('bar_graph_1').getContext('2d');
+                window.myBarGraph1 = new Chart(bar_gph1, bar_gph1_config);
 
                 var eg_config_1 = {
                     // The type of chart we want to create
@@ -1018,8 +1167,143 @@
                     setTableB();
                     update();
                 
+                $('#chartCreateModal').on('shown.bs.modal', function () {
+//                  $('#myInput').trigger('focus')
+
+                });
+
+
             } // WINDOW.ONLOAD
         
+            // DYNAMIC REPORTINGGGGGGGGG
+            
+            function showNewChartCreateModal(){
+                $('#chartCreateModal').modal('show');
+                checkChartInput();
+            }
+            var new_chart_user_input = {}
+            
+            function checkChartInput(){
+                var group_by = document.getElementById("chartGroupSelect").value;
+                var sub_group_by = document.getElementById("chartSubGroupSelect").value;
+                
+                if(group_by!=sub_group_by){
+                   document.getElementById("btnGenerateChart").disabled = false;
+                   }else{
+                   document.getElementById("btnGenerateChart").disabled = true;
+                   }
+                //console.log(group_by + ":" + sub_group_by);
+            }
+            function generateChart(){
+                console.log("yo");
+                var group_by = document.getElementById("chartGroupSelect").value;
+                var sub_group_by = document.getElementById("chartSubGroupSelect").value;
+                /* <div class="col pl-0 mt-3">
+                                    <div class="bg-white shadow">
+                                        <canvas id="bar_graph_1"></canvas>
+                                    </div>
+                                </div> */
+                var newChart = $("<div class='col-12 p-0 mt-3 bg-white shadow'><canvas></canvas></div>");
+                var bar_config = {
+                    type: 'bar',
+                    data: getGraphDynamicData(group_by.split(" ").join("_"),sub_group_by.split(" ").join("_")),
+                    options: {
+                            responsive: true,
+                            title: {
+                                display: true,
+                                text: group_by+' by '+sub_group_by
+                            },
+                            tooltips: {
+                                mode: 'index',
+                                intersect: false,
+                            },
+                            hover: {
+                                mode: 'nearest',
+                                intersect: true
+                            },
+                            scales: {
+                                xAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Year'
+                                    }
+                                }],
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    },
+                                    display: true,
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Value'
+                                    }
+                                }]
+                            }
+                    }
+                };
+
+                var ctxx = $(newChart).find("canvas").get(0).getContext("2d");
+                var chartx = new Chart(ctxx, bar_config);
+
+                $("#dyn-charts-container").append(newChart);
+                $('#chartCreateModal').modal('hide');
+                //
+            }
+
+            function getGraphDynamicData(group_by,sub_group_by){
+                console.log(group_by);
+                var data = {datasets:[],labels:[]};
+                var groupedData = _.groupBy(big_data, function(d){return d[group_by]});
+                var subGroupedData_all = _.groupBy(big_data, function(d){return d[sub_group_by]});
+                //var datasets = [];
+                console.log(groupedData);
+
+                $.each(groupedData,function(key,arr){
+                    data.labels.push(key);
+                    
+                    
+                    //data.datasets[0].backgroundColor.push(arr.length);
+                });
+                $.each(subGroupedData_all,function(skey,sarr){
+                    var colorNames = Object.keys(window.chartColors);
+                    var colorName = colorNames[data.datasets.length % colorNames.length];
+                    var newColor = window.chartColors[colorName];
+                    
+                    var dataset = {label:skey,data:[],backgroundColor: newColor,
+					borderColor: newColor,fill:false};
+                        console.log(skey);
+                    
+                    $.each(groupedData,function(grkey,grarr){
+                        var subGroupedData_inside = _.groupBy(grarr, function(d){return d[sub_group_by]});
+                        //console.log(subGroupedData_inside[skey].length);
+                        dataset.data.push(subGroupedData_inside[skey].length);
+                        //console.log(skey);
+                        //dataset.data.push(inkey.skey.length);
+                    });
+                    console.log(dataset);
+                    data.datasets.push(dataset);
+
+                    //var subgroup_data_count = _.groupBy(arr, function(d){return d.MOC_Type}).length;
+                    //console.log(_.groupBy(arr, function(d){return d.MOC_Type}));
+//                        dataset.data.push[];
+                    //data.datasets[0].data.push(arr.length);
+                });
+                console.log(JSON.stringify(data));
+                return data;
+            }
+            
+            $("#bar_graph_1").click(function(e,a,b,c,d) {
+  // var activeBars = $("#bar_graph_1").getBarsAtEvent(e); 
+   //console.log(e);
+});
+
+            Chart.defaults.global.legend.onClick = onClickCallback;
+Chart.defaults.doughnut.legend.onClick = onClickCallback;
+Chart.defaults.polarArea.legend.onClick = onClickCallback;
+            function onClickCallback(e,a,b,c,d){
+               // console.log(Chart.defaults.global);
+            }
             
         </script>
 
